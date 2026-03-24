@@ -13,3 +13,4 @@ C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventar
 C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\refint\BackInventario.Application.dll
 C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.pdb
 C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\ref\BackInventario.Application.dll
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.sourcelink.json

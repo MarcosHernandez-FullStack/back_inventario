@@ -66,7 +66,9 @@ builder.Services.AddRateLimiter(options =>
 // CORS
 builder.Services.AddCors(options =>
     options.AddPolicy("FrontPolicy", policy =>
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+                  "http://localhost:4200",
+                  "https://purple-plant-07274ad0f.4.azurestaticapps.net")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials()));

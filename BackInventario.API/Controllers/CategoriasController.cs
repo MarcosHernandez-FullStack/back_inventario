@@ -37,6 +37,14 @@ public class CategoriasController(CategoriaService categoriaService) : Controlle
         return ok ? NoContent() : NotFound();
     }
 
+    [HttpPatch("{id}/estado")]
+    [Authorize(Roles = "ADMINISTRADOR")]
+    public async Task<IActionResult> CambiarEstado(int id, [FromBody] CambiarEstadoCategoriaDto dto)
+    {
+        var ok = await categoriaService.CambiarEstadoAsync(id, dto.Estado, dto.ActualizadoPor);
+        return ok ? NoContent() : NotFound();
+    }
+
     [HttpDelete("{id}")]
     [Authorize(Roles = "ADMINISTRADOR")]
     public async Task<IActionResult> Eliminar(int id)
@@ -47,3 +55,4 @@ public class CategoriasController(CategoriaService categoriaService) : Controlle
 }
 
 public record ActualizarCategoriaDto(string Nombre, string ActualizadoPor);
+public record CambiarEstadoCategoriaDto(string Estado, string ActualizadoPor);

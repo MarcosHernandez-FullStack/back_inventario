@@ -39,6 +39,16 @@ public class CategoriaRepository(DbConnectionFactory db) : ICategoriaRepository
         return rows > 0;
     }
 
+    public async Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+    {
+        using var conn = db.CreateConnection();
+        var rows = await conn.ExecuteAsync(
+            "sp_CambiarEstadoCategoria",
+            new { Id = id, Estado = estado, ActualizadoPor = actualizadoPor },
+            commandType: CommandType.StoredProcedure);
+        return rows > 0;
+    }
+
     public async Task<bool> EliminarAsync(int id)
     {
         using var conn = db.CreateConnection();

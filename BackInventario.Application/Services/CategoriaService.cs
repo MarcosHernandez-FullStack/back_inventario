@@ -17,6 +17,9 @@ public class CategoriaService(ICategoriaRepository categoriaRepository)
     public Task<bool> ActualizarAsync(int id, string nombre, string actualizadoPor)
         => categoriaRepository.ActualizarAsync(id, nombre, actualizadoPor);
 
+    public Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+        => categoriaRepository.CambiarEstadoAsync(id, estado, actualizadoPor);
+
     public Task<bool> EliminarAsync(int id)
         => categoriaRepository.EliminarAsync(id);
 }

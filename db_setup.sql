@@ -200,6 +200,20 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER PROCEDURE dbo.sp_CambiarEstadoCategoria
+    @Id             INT,
+    @Estado         NVARCHAR(10),
+    @ActualizadoPor NVARCHAR(100)
+AS
+BEGIN
+    UPDATE dbo.Categoria
+    SET    Estado             = @Estado,
+           FechaActualizacion = SYSDATETIME(),
+           ActualizadoPor     = @ActualizadoPor
+    WHERE  Id = @Id;
+END;
+GO
+
 -- ── Productos ────────────────────────────────────────────────
 CREATE OR ALTER PROCEDURE dbo.sp_ListarProductos
     @Nombre      NVARCHAR(150) = NULL,

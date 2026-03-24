@@ -68,3 +68,4 @@ C:\dev\back_inventario\BackInventario.API\obj\Debug\net10.0\refint\BackInventari
 C:\dev\back_inventario\BackInventario.API\obj\Debug\net10.0\BackInventario.API.pdb
 C:\dev\back_inventario\BackInventario.API\obj\Debug\net10.0\BackInventario.API.genruntimeconfig.cache
 C:\dev\back_inventario\BackInventario.API\obj\Debug\net10.0\ref\BackInventario.API.dll
+C:\dev\back_inventario\BackInventario.API\obj\Debug\net10.0\BackInventario.API.sourcelink.json

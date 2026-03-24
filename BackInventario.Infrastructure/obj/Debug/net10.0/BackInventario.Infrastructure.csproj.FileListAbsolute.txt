@@ -15,3 +15,4 @@ C:\dev\back_inventario\BackInventario.Infrastructure\obj\Debug\net10.0\BackInven
 C:\dev\back_inventario\BackInventario.Infrastructure\obj\Debug\net10.0\refint\BackInventario.Infrastructure.dll
 C:\dev\back_inventario\BackInventario.Infrastructure\obj\Debug\net10.0\BackInventario.Infrastructure.pdb
 C:\dev\back_inventario\BackInventario.Infrastructure\obj\Debug\net10.0\ref\BackInventario.Infrastructure.dll
+C:\dev\back_inventario\BackInventario.Infrastructure\obj\Debug\net10.0\BackInventario.Infrastructure.sourcelink.json
