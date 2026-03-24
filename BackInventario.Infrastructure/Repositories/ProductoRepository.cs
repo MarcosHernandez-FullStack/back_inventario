@@ -58,7 +58,7 @@ public class ProductoRepository(DbConnectionFactory db) : IProductoRepository
         return rows > 0;
     }
 
-    public async Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+    public async Task<bool> CambiarEstadoAsync(int id, string estado, int actualizadoPor)
     {
         using var conn = db.CreateConnection();
         var rows = await conn.ExecuteAsync(

@@ -25,8 +25,8 @@ CREATE TABLE dbo.Usuario
                                              CONSTRAINT DF_Usuario_Estado   DEFAULT 'ACTIVO',
     FechaCreacion     DATETIME2(0)  NOT NULL CONSTRAINT DF_Usuario_FechaCreacion     DEFAULT (SYSDATETIME()),
     FechaActualizacion DATETIME2(0) NULL,
-    CreadoPor         NVARCHAR(100) NOT NULL,
-    ActualizadoPor    NVARCHAR(100) NULL,
+    CreadoPor         INT NOT NULL,
+    ActualizadoPor    INT NULL,
     CONSTRAINT PK_Usuario PRIMARY KEY (Id),
     CONSTRAINT UQ_Usuario_Correo UNIQUE (Correo)
 );
@@ -40,8 +40,8 @@ CREATE TABLE dbo.Categoria
                                              CONSTRAINT DF_Categoria_Estado DEFAULT 'ACTIVO',
     FechaCreacion     DATETIME2(0)  NOT NULL CONSTRAINT DF_Categoria_FechaCreacion DEFAULT (SYSDATETIME()),
     FechaActualizacion DATETIME2(0) NULL,
-    CreadoPor         NVARCHAR(100) NOT NULL,
-    ActualizadoPor    NVARCHAR(100) NULL,
+    CreadoPor         INT NOT NULL,
+    ActualizadoPor    INT NULL,
     CONSTRAINT PK_Categoria PRIMARY KEY (Id)
 );
 GO
@@ -58,8 +58,8 @@ CREATE TABLE dbo.Producto
                                               CONSTRAINT DF_Producto_Estado    DEFAULT 'ACTIVO',
     FechaCreacion     DATETIME2(0)   NOT NULL CONSTRAINT DF_Producto_FechaCreacion DEFAULT (SYSDATETIME()),
     FechaActualizacion DATETIME2(0)  NULL,
-    CreadoPor         NVARCHAR(100)  NOT NULL,
-    ActualizadoPor    NVARCHAR(100)  NULL,
+    CreadoPor         INT  NOT NULL,
+    ActualizadoPor    INT  NULL,
     CONSTRAINT PK_Producto      PRIMARY KEY (Id),
     CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IdCategoria) REFERENCES dbo.Categoria(Id),
     CONSTRAINT CK_Producto_Precio    CHECK (Precio    >= 0),
@@ -113,7 +113,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_CrearUsuario
     @Correo     NVARCHAR(150),
     @Contrasena NVARCHAR(200),
     @Rol        NVARCHAR(50),
-    @CreadoPor  NVARCHAR(100)
+    @CreadoPor  INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -130,7 +130,7 @@ GO
 CREATE OR ALTER PROCEDURE dbo.sp_ActualizarEstadoUsuario
     @Id            INT,
     @Estado        NVARCHAR(10),
-    @ActualizadoPor NVARCHAR(100)
+    @ActualizadoPor INT
 AS
 BEGIN
     UPDATE dbo.Usuario
@@ -165,7 +165,7 @@ GO
 
 CREATE OR ALTER PROCEDURE dbo.sp_CrearCategoria
     @Nombre    NVARCHAR(100),
-    @CreadoPor NVARCHAR(100)
+    @CreadoPor INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -178,7 +178,7 @@ GO
 CREATE OR ALTER PROCEDURE dbo.sp_ActualizarCategoria
     @Id             INT,
     @Nombre         NVARCHAR(100),
-    @ActualizadoPor NVARCHAR(100)
+    @ActualizadoPor INT
 AS
 BEGIN
     UPDATE dbo.Categoria
@@ -203,7 +203,7 @@ GO
 CREATE OR ALTER PROCEDURE dbo.sp_CambiarEstadoCategoria
     @Id             INT,
     @Estado         NVARCHAR(10),
-    @ActualizadoPor NVARCHAR(100)
+    @ActualizadoPor INT
 AS
 BEGIN
     UPDATE dbo.Categoria
@@ -250,7 +250,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_CrearProducto
     @Precio      DECIMAL(10,2),
     @Cantidad    INT,
     @IdCategoria INT,
-    @CreadoPor   NVARCHAR(100)
+    @CreadoPor   INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -267,7 +267,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_ActualizarProducto
     @Precio         DECIMAL(10,2),
     @Cantidad       INT,
     @IdCategoria    INT,
-    @ActualizadoPor NVARCHAR(100)
+    @ActualizadoPor INT
 AS
 BEGIN
     UPDATE dbo.Producto
@@ -296,7 +296,7 @@ GO
 CREATE OR ALTER PROCEDURE dbo.sp_CambiarEstadoProducto
     @Id             INT,
     @Estado         NVARCHAR(10),
-    @ActualizadoPor NVARCHAR(100)
+    @ActualizadoPor INT
 AS
 BEGIN
     UPDATE dbo.Producto
@@ -359,7 +359,7 @@ VALUES (
     'Administrador', 'Sistema',
     'admin@inventario.com',
     CONVERT(NVARCHAR(64), HASHBYTES('SHA2_256', N'Admin123'), 2),
-    'ADMINISTRADOR', 'SISTEMA'
+    'ADMINISTRADOR', 0   -- 0 = inicialización del sistema
 );
 
 -- Empleado: empleado@inventario.com / Empleado123
@@ -368,29 +368,29 @@ VALUES (
     'Empleado', 'Prueba',
     'empleado@inventario.com',
     CONVERT(NVARCHAR(64), HASHBYTES('SHA2_256', N'Empleado123'), 2),
-    'EMPLEADO', 'SISTEMA'
+    'EMPLEADO', 1   -- creado por admin (id=1)
 );
 
 -- Categorías
-INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Computadoras',   'SISTEMA');
-INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Monitores',      'SISTEMA');
-INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Periféricos',    'SISTEMA');
-INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Almacenamiento', 'SISTEMA');
-INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Audio',          'SISTEMA');
+INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Computadoras',   1);
+INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Monitores',      1);
+INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Periféricos',    1);
+INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Almacenamiento', 1);
+INSERT INTO dbo.Categoria (Nombre, CreadoPor) VALUES ('Audio',          1);
 
 -- Productos
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Laptop HP 15"',     'Intel Core i5, 8GB RAM, 512GB SSD', 2899.90, 12, 1, 'SISTEMA');
+VALUES ('Laptop HP 15"',     'Intel Core i5, 8GB RAM, 512GB SSD', 2899.90, 12, 1, 1);
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Monitor LG 27"',   'Full HD IPS, 75Hz',                  749.00,   8, 2, 'SISTEMA');
+VALUES ('Monitor LG 27"',   'Full HD IPS, 75Hz',                  749.00,   8, 2, 1);
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Teclado Mecánico', 'Switch Blue, retroiluminado',         189.90,   3, 3, 'SISTEMA');
+VALUES ('Teclado Mecánico', 'Switch Blue, retroiluminado',         189.90,   3, 3, 1);
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Mouse Logitech MX','Inalámbrico, ergonómico',             229.00,  20, 3, 'SISTEMA');
+VALUES ('Mouse Logitech MX','Inalámbrico, ergonómico',             229.00,  20, 3, 1);
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Disco SSD 1TB',    'Samsung 870 EVO SATA',                399.00,   5, 4, 'SISTEMA');
+VALUES ('Disco SSD 1TB',    'Samsung 870 EVO SATA',                399.00,   5, 4, 1);
 INSERT INTO dbo.Producto (Nombre, Descripcion, Precio, Cantidad, IdCategoria, CreadoPor)
-VALUES ('Auriculares Sony', 'Noise Cancelling WH-1000XM5',         899.00,   4, 5, 'SISTEMA');
+VALUES ('Auriculares Sony', 'Noise Cancelling WH-1000XM5',         899.00,   4, 5, 1);
 GO
 
 PRINT 'Setup completado. Credenciales de prueba:';

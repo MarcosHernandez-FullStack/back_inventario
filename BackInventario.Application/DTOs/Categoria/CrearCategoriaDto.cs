@@ -8,7 +8,6 @@ public class CrearCategoriaDto
     [StringLength(100, MinimumLength = 2, ErrorMessage = "El nombre debe tener entre 2 y 100 caracteres.")]
     public string Nombre { get; set; } = string.Empty;
 
-    [Required]
-    [StringLength(150)]
-    public string CreadoPor { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "El usuario que crea es requerido.")]
+    public int CreadoPor { get; set; }
 }

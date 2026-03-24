@@ -29,7 +29,7 @@ public class CategoriaRepository(DbConnectionFactory db) : ICategoriaRepository
             "sp_CrearCategoria", dto, commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<bool> ActualizarAsync(int id, string nombre, string actualizadoPor)
+    public async Task<bool> ActualizarAsync(int id, string nombre, int actualizadoPor)
     {
         using var conn = db.CreateConnection();
         var rows = await conn.ExecuteAsync(
@@ -39,7 +39,7 @@ public class CategoriaRepository(DbConnectionFactory db) : ICategoriaRepository
         return rows > 0;
     }
 
-    public async Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+    public async Task<bool> CambiarEstadoAsync(int id, string estado, int actualizadoPor)
     {
         using var conn = db.CreateConnection();
         var rows = await conn.ExecuteAsync(

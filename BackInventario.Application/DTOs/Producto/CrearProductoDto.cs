@@ -20,7 +20,6 @@ public class CrearProductoDto
     [Range(1, int.MaxValue, ErrorMessage = "Selecciona una categoría válida.")]
     public int IdCategoria { get; set; }
 
-    [Required]
-    [StringLength(150)]
-    public string CreadoPor { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "El usuario que crea es requerido.")]
+    public int CreadoPor { get; set; }
 }

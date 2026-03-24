@@ -14,6 +14,6 @@ public class UsuarioService(IUsuarioRepository usuarioRepository)
     public Task<int> CrearAsync(CrearUsuarioDto dto)
         => usuarioRepository.CrearAsync(dto);
 
-    public Task<bool> ActualizarEstadoAsync(int id, string estado, string actualizadoPor)
+    public Task<bool> ActualizarEstadoAsync(int id, string estado, int actualizadoPor)
         => usuarioRepository.ActualizarEstadoAsync(id, estado, actualizadoPor);
 }

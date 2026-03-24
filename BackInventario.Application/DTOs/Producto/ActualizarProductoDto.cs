@@ -20,7 +20,6 @@ public class ActualizarProductoDto
     [Range(1, int.MaxValue, ErrorMessage = "Selecciona una categoría válida.")]
     public int IdCategoria { get; set; }
 
-    [Required]
-    [StringLength(150)]
-    public string ActualizadoPor { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "El usuario que actualiza es requerido.")]
+    public int ActualizadoPor { get; set; }
 }

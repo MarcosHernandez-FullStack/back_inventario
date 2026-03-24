@@ -20,7 +20,7 @@ public class ProductoService(IProductoRepository productoRepository)
     public Task<bool> EliminarAsync(int id)
         => productoRepository.EliminarAsync(id);
 
-    public Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+    public Task<bool> CambiarEstadoAsync(int id, string estado, int actualizadoPor)
         => productoRepository.CambiarEstadoAsync(id, estado, actualizadoPor);
 
     public Task<IEnumerable<ProductoDto>> ListarBajoStockAsync(int umbral = 5)

@@ -36,4 +36,4 @@ public class UsuariosController(UsuarioService usuarioService) : ControllerBase
     }
 }
 
-public record ActualizarEstadoDto(string Estado, string ActualizadoPor);
+public record ActualizarEstadoDto(string Estado, int ActualizadoPor);

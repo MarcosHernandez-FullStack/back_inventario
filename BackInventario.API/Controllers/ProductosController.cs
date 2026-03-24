@@ -59,4 +59,4 @@ public class ProductosController(ProductoService productoService) : ControllerBa
     }
 }
 
-public record CambiarEstadoProductoDto(string Estado, string ActualizadoPor);
+public record CambiarEstadoProductoDto(string Estado, int ActualizadoPor);

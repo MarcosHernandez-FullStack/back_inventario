@@ -29,7 +29,7 @@ public class UsuarioRepository(DbConnectionFactory db) : IUsuarioRepository
             "sp_CrearUsuario", dto, commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<bool> ActualizarEstadoAsync(int id, string estado, string actualizadoPor)
+    public async Task<bool> ActualizarEstadoAsync(int id, string estado, int actualizadoPor)
     {
         using var conn = db.CreateConnection();
         var rows = await conn.ExecuteAsync(

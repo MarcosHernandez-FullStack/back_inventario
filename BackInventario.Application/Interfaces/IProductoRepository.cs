@@ -9,6 +9,6 @@ public interface IProductoRepository
     Task<int>                      CrearAsync(CrearProductoDto dto);
     Task<bool>                     ActualizarAsync(int id, ActualizarProductoDto dto);
     Task<bool>                     EliminarAsync(int id);
-    Task<bool>                     CambiarEstadoAsync(int id, string estado, string actualizadoPor);
+    Task<bool>                     CambiarEstadoAsync(int id, string estado, int actualizadoPor);
     Task<IEnumerable<ProductoDto>> ListarBajoStockAsync(int umbral = 5);
 }

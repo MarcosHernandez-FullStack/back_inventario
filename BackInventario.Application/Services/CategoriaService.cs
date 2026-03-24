@@ -14,10 +14,10 @@ public class CategoriaService(ICategoriaRepository categoriaRepository)
     public Task<int> CrearAsync(CrearCategoriaDto dto)
         => categoriaRepository.CrearAsync(dto);
 
-    public Task<bool> ActualizarAsync(int id, string nombre, string actualizadoPor)
+    public Task<bool> ActualizarAsync(int id, string nombre, int actualizadoPor)
         => categoriaRepository.ActualizarAsync(id, nombre, actualizadoPor);
 
-    public Task<bool> CambiarEstadoAsync(int id, string estado, string actualizadoPor)
+    public Task<bool> CambiarEstadoAsync(int id, string estado, int actualizadoPor)
         => categoriaRepository.CambiarEstadoAsync(id, estado, actualizadoPor);
 
     public Task<bool> EliminarAsync(int id)

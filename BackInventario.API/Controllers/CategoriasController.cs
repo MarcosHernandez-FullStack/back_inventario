@@ -54,5 +54,5 @@ public class CategoriasController(CategoriaService categoriaService) : Controlle
     }
 }
 
-public record ActualizarCategoriaDto(string Nombre, string ActualizadoPor);
-public record CambiarEstadoCategoriaDto(string Estado, string ActualizadoPor);
+public record ActualizarCategoriaDto(string Nombre, int ActualizadoPor);
+public record CambiarEstadoCategoriaDto(string Estado, int ActualizadoPor);

@@ -29,7 +29,6 @@ public class CrearUsuarioDto
     [RegularExpression("^(EMPLEADO|ADMINISTRADOR)$", ErrorMessage = "El rol debe ser EMPLEADO o ADMINISTRADOR.")]
     public string Rol { get; set; } = string.Empty;
 
-    [Required]
-    [StringLength(150)]
-    public string CreadoPor { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "El usuario que crea es requerido.")]
+    public int CreadoPor { get; set; }
 }
