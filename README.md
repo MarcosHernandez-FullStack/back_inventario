@@ -2,7 +2,7 @@
 
 Backend del sistema de gestión de inventario. Desarrollado con **.NET 10** y **SQL Server**, expone una API REST consumida por el frontend Angular.
 
-> **Repositorio frontend:** [front_inventario](https://github.com/tu-usuario/front_inventario)
+> **Repositorio frontend:** [front_inventario](https://github.com/MarcosHernandez-FullStack/front_inventario)
 
 ---
 
@@ -135,6 +135,6 @@ BackInventario/
 
 ## Relación con el frontend
 
-Este backend es consumido por **[front_inventario](https://github.com/tu-usuario/front_inventario)**, una aplicación Angular 21 que debe estar corriendo en `http://localhost:4200`. El CORS está configurado para aceptar únicamente ese origen.
+Este backend es consumido por **[front_inventario](https://github.com/MarcosHernandez-FullStack/front_inventario)**, una aplicación Angular 21 que debe estar corriendo en `http://localhost:4200`. El CORS está configurado para aceptar únicamente ese origen.
 
 La comunicación en tiempo real entre ambos se realiza mediante **SignalR** en el endpoint `/hubs/notificaciones`.
