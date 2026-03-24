@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="BackInventario.API/BackInventario.API.csproj" />
+  <Project Path="BackInventario.Application/BackInventario.Application.csproj" />
+  <Project Path="BackInventario.Domain/BackInventario.Domain.csproj" />
+  <Project Path="BackInventario.Infrastructure/BackInventario.Infrastructure.csproj" />
+  <Project Path="BackInventario.Tests/BackInventario.Tests.csproj" />
+</Solution>

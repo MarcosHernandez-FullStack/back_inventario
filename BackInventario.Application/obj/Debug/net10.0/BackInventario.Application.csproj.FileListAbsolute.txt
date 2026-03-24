@@ -1,0 +1,15 @@
+C:\dev\back_inventario\BackInventario.Application\bin\Debug\net10.0\BackInventario.Application.deps.json
+C:\dev\back_inventario\BackInventario.Application\bin\Debug\net10.0\BackInventario.Application.dll
+C:\dev\back_inventario\BackInventario.Application\bin\Debug\net10.0\BackInventario.Application.pdb
+C:\dev\back_inventario\BackInventario.Application\bin\Debug\net10.0\BackInventario.Domain.dll
+C:\dev\back_inventario\BackInventario.Application\bin\Debug\net10.0\BackInventario.Domain.pdb
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.csproj.AssemblyReference.cache
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.AssemblyInfoInputs.cache
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.AssemblyInfo.cs
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.csproj.CoreCompileInputs.cache
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInve.359603CC.Up2Date
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.dll
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\refint\BackInventario.Application.dll
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\BackInventario.Application.pdb
+C:\dev\back_inventario\BackInventario.Application\obj\Debug\net10.0\ref\BackInventario.Application.dll

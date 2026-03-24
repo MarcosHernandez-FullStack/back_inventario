@@ -1,0 +1,23 @@
+@host = http://localhost:5000
+
+### Login Admin
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "correo": "admin@inventario.com",
+  "contrasena": "Admin123"
+}
+
+###
+
+### Login Usuario
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "correo": "usuario@inventario.com",
+  "contrasena": "User123"
+}
+
+###
