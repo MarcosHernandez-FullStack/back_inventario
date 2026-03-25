@@ -15,7 +15,6 @@ public class ReportesController(ReporteService reporteService, ProductoService p
         => Ok(await reporteService.ResumenAsync());
 
     [HttpGet("stock-por-categoria")]
-    [Authorize(Roles = "ADMINISTRADOR")]
     public async Task<IActionResult> StockPorCategoria()
         => Ok(await reporteService.StockPorCategoriaAsync());
 

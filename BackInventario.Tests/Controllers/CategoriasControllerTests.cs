@@ -74,7 +74,7 @@ public class CategoriasControllerTests
     public async Task Crear_ConDatosValidos_Retorna201Created()
     {
         // Arrange
-        var dto = new CrearCategoriaDto { Nombre = "Nueva", CreadoPor = "admin@test.com" };
+        var dto = new CrearCategoriaDto { Nombre = "Nueva", CreadoPor = 1 };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(5);
 
         // Act
@@ -91,10 +91,10 @@ public class CategoriasControllerTests
     public async Task Actualizar_CuandoExiste_Retorna204NoContent()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarAsync(1, "NuevoNombre", "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.ActualizarAsync(1, "NuevoNombre", 1)).ReturnsAsync(true);
 
         // Act
-        var actionResult = await _sut.Actualizar(1, new ActualizarCategoriaDto("NuevoNombre", "admin@test.com"));
+        var actionResult = await _sut.Actualizar(1, new ActualizarCategoriaDto("NuevoNombre", 1));
 
         // Assert
         Assert.IsType<NoContentResult>(actionResult);
@@ -104,10 +104,10 @@ public class CategoriasControllerTests
     public async Task Actualizar_CuandoNoExiste_Retorna404NotFound()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.ActualizarAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var actionResult = await _sut.Actualizar(99, new ActualizarCategoriaDto("X", "admin@test.com"));
+        var actionResult = await _sut.Actualizar(99, new ActualizarCategoriaDto("X", 1));
 
         // Assert
         Assert.IsType<NotFoundResult>(actionResult);

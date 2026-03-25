@@ -86,7 +86,7 @@ public class CategoriaServiceTests
     public async Task CrearAsync_DebeRetornarIdGenerado()
     {
         // Arrange
-        var dto = new CrearCategoriaDto { Nombre = "Nueva", CreadoPor = "admin@test.com" };
+        var dto = new CrearCategoriaDto { Nombre = "Nueva", CreadoPor = 1 };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(5);
 
         // Act
@@ -103,10 +103,10 @@ public class CategoriaServiceTests
     public async Task ActualizarAsync_CuandoExiste_RetornaTrue()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarAsync(1, "NuevoNombre", "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.ActualizarAsync(1, "NuevoNombre", 1)).ReturnsAsync(true);
 
         // Act
-        var resultado = await _sut.ActualizarAsync(1, "NuevoNombre", "admin@test.com");
+        var resultado = await _sut.ActualizarAsync(1, "NuevoNombre", 1);
 
         // Assert
         Assert.True(resultado);
@@ -116,10 +116,10 @@ public class CategoriaServiceTests
     public async Task ActualizarAsync_CuandoNoExiste_RetornaFalse()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.ActualizarAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var resultado = await _sut.ActualizarAsync(99, "X", "admin@test.com");
+        var resultado = await _sut.ActualizarAsync(99, "X", 1);
 
         // Assert
         Assert.False(resultado);

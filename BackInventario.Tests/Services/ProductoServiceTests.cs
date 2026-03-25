@@ -95,7 +95,7 @@ public class ProductoServiceTests
             Precio      = 100m,
             Cantidad    = 10,
             IdCategoria = 1,
-            CreadoPor   = "admin@test.com",
+            CreadoPor   = 1,
         };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(7);
 
@@ -113,7 +113,7 @@ public class ProductoServiceTests
     public async Task ActualizarAsync_CuandoExiste_RetornaTrue()
     {
         // Arrange
-        var dto = new ActualizarProductoDto { Nombre = "Laptop Pro", Precio = 3000m, Cantidad = 8, IdCategoria = 1, ActualizadoPor = "admin@test.com" };
+        var dto = new ActualizarProductoDto { Nombre = "Laptop Pro", Precio = 3000m, Cantidad = 8, IdCategoria = 1, ActualizadoPor = 1 };
         _repoMock.Setup(r => r.ActualizarAsync(1, dto)).ReturnsAsync(true);
 
         // Act
@@ -127,7 +127,7 @@ public class ProductoServiceTests
     public async Task ActualizarAsync_CuandoNoExiste_RetornaFalse()
     {
         // Arrange
-        var dto = new ActualizarProductoDto { Nombre = "X", Precio = 1m, Cantidad = 1, IdCategoria = 1, ActualizadoPor = "admin@test.com" };
+        var dto = new ActualizarProductoDto { Nombre = "X", Precio = 1m, Cantidad = 1, IdCategoria = 1, ActualizadoPor = 1 };
         _repoMock.Setup(r => r.ActualizarAsync(99, dto)).ReturnsAsync(false);
 
         // Act
@@ -174,10 +174,10 @@ public class ProductoServiceTests
     public async Task CambiarEstadoAsync_CuandoExiste_RetornaTrue(string nuevoEstado)
     {
         // Arrange
-        _repoMock.Setup(r => r.CambiarEstadoAsync(1, nuevoEstado, "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.CambiarEstadoAsync(1, nuevoEstado, 1)).ReturnsAsync(true);
 
         // Act
-        var resultado = await _sut.CambiarEstadoAsync(1, nuevoEstado, "admin@test.com");
+        var resultado = await _sut.CambiarEstadoAsync(1, nuevoEstado, 1);
 
         // Assert
         Assert.True(resultado);
@@ -187,10 +187,10 @@ public class ProductoServiceTests
     public async Task CambiarEstadoAsync_CuandoNoExiste_RetornaFalse()
     {
         // Arrange
-        _repoMock.Setup(r => r.CambiarEstadoAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.CambiarEstadoAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var resultado = await _sut.CambiarEstadoAsync(99, "ACTIVO", "admin@test.com");
+        var resultado = await _sut.CambiarEstadoAsync(99, "ACTIVO", 1);
 
         // Assert
         Assert.False(resultado);

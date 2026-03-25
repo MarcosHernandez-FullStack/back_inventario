@@ -313,7 +313,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT p.Id, p.Nombre, p.Descripcion, p.Precio, p.Cantidad,
-           p.IdCategoria, c.Nombre AS NombreCategoria, p.Estado
+           p.IdCategoria, c.Nombre AS NombreCategoria, p.Estado, p.FechaCreacion
     FROM   dbo.Producto p
     INNER  JOIN dbo.Categoria c ON c.Id = p.IdCategoria
     WHERE  p.Estado   = 'ACTIVO'

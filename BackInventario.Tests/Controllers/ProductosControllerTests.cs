@@ -94,7 +94,7 @@ public class ProductosControllerTests
     public async Task Crear_ConDatosValidos_Retorna201Created()
     {
         // Arrange
-        var dto = new CrearProductoDto { Nombre = "Nuevo", Precio = 100m, Cantidad = 5, IdCategoria = 1, CreadoPor = "admin@test.com" };
+        var dto = new CrearProductoDto { Nombre = "Nuevo", Precio = 100m, Cantidad = 5, IdCategoria = 1, CreadoPor = 1 };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(10);
 
         // Act
@@ -111,7 +111,7 @@ public class ProductosControllerTests
     public async Task Actualizar_CuandoExiste_Retorna204NoContent()
     {
         // Arrange
-        var dto = new ActualizarProductoDto { Nombre = "Laptop Pro", Precio = 3000m, Cantidad = 8, IdCategoria = 1, ActualizadoPor = "admin@test.com" };
+        var dto = new ActualizarProductoDto { Nombre = "Laptop Pro", Precio = 3000m, Cantidad = 8, IdCategoria = 1, ActualizadoPor = 1 };
         _repoMock.Setup(r => r.ActualizarAsync(1, dto)).ReturnsAsync(true);
 
         // Act
@@ -125,7 +125,7 @@ public class ProductosControllerTests
     public async Task Actualizar_CuandoNoExiste_Retorna404NotFound()
     {
         // Arrange
-        var dto = new ActualizarProductoDto { Nombre = "X", Precio = 1m, Cantidad = 1, IdCategoria = 1, ActualizadoPor = "admin@test.com" };
+        var dto = new ActualizarProductoDto { Nombre = "X", Precio = 1m, Cantidad = 1, IdCategoria = 1, ActualizadoPor = 1 };
         _repoMock.Setup(r => r.ActualizarAsync(99, dto)).ReturnsAsync(false);
 
         // Act
@@ -169,10 +169,10 @@ public class ProductosControllerTests
     public async Task CambiarEstado_CuandoExiste_Retorna204NoContent()
     {
         // Arrange
-        _repoMock.Setup(r => r.CambiarEstadoAsync(1, "INACTIVO", "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.CambiarEstadoAsync(1, "INACTIVO", 1)).ReturnsAsync(true);
 
         // Act
-        var actionResult = await _sut.CambiarEstado(1, new CambiarEstadoProductoDto("INACTIVO", "admin@test.com"));
+        var actionResult = await _sut.CambiarEstado(1, new CambiarEstadoProductoDto("INACTIVO", 1));
 
         // Assert
         Assert.IsType<NoContentResult>(actionResult);
@@ -182,10 +182,10 @@ public class ProductosControllerTests
     public async Task CambiarEstado_CuandoNoExiste_Retorna404NotFound()
     {
         // Arrange
-        _repoMock.Setup(r => r.CambiarEstadoAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.CambiarEstadoAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var actionResult = await _sut.CambiarEstado(99, new CambiarEstadoProductoDto("ACTIVO", "admin@test.com"));
+        var actionResult = await _sut.CambiarEstado(99, new CambiarEstadoProductoDto("ACTIVO", 1));
 
         // Assert
         Assert.IsType<NotFoundResult>(actionResult);

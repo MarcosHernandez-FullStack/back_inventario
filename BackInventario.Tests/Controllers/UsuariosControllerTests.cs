@@ -82,7 +82,7 @@ public class UsuariosControllerTests
             Correo     = "carlos@test.com",
             Contrasena = "secreta123",
             Rol        = "EMPLEADO",
-            CreadoPor  = "admin@test.com",
+            CreadoPor  = 1,
         };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(3);
 
@@ -100,10 +100,10 @@ public class UsuariosControllerTests
     public async Task ActualizarEstado_CuandoExiste_Retorna204NoContent()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarEstadoAsync(1, "INACTIVO", "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.ActualizarEstadoAsync(1, "INACTIVO", 1)).ReturnsAsync(true);
 
         // Act
-        var actionResult = await _sut.ActualizarEstado(1, new ActualizarEstadoDto("INACTIVO", "admin@test.com"));
+        var actionResult = await _sut.ActualizarEstado(1, new ActualizarEstadoDto("INACTIVO", 1));
 
         // Assert
         Assert.IsType<NoContentResult>(actionResult);
@@ -113,10 +113,10 @@ public class UsuariosControllerTests
     public async Task ActualizarEstado_CuandoNoExiste_Retorna404NotFound()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarEstadoAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.ActualizarEstadoAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var actionResult = await _sut.ActualizarEstado(99, new ActualizarEstadoDto("ACTIVO", "admin@test.com"));
+        var actionResult = await _sut.ActualizarEstado(99, new ActualizarEstadoDto("ACTIVO", 1));
 
         // Assert
         Assert.IsType<NotFoundResult>(actionResult);

@@ -94,7 +94,7 @@ public class UsuarioServiceTests
             Correo     = "carlos@test.com",
             Contrasena = "secreta123",
             Rol        = "EMPLEADO",
-            CreadoPor  = "admin@test.com",
+            CreadoPor  = 1,
         };
         _repoMock.Setup(r => r.CrearAsync(dto)).ReturnsAsync(3);
 
@@ -114,24 +114,24 @@ public class UsuarioServiceTests
     public async Task ActualizarEstadoAsync_CuandoExiste_RetornaTrue(string estado)
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarEstadoAsync(1, estado, "admin@test.com")).ReturnsAsync(true);
+        _repoMock.Setup(r => r.ActualizarEstadoAsync(1, estado, 1)).ReturnsAsync(true);
 
         // Act
-        var resultado = await _sut.ActualizarEstadoAsync(1, estado, "admin@test.com");
+        var resultado = await _sut.ActualizarEstadoAsync(1, estado, 1);
 
         // Assert
         Assert.True(resultado);
-        _repoMock.Verify(r => r.ActualizarEstadoAsync(1, estado, "admin@test.com"), Times.Once);
+        _repoMock.Verify(r => r.ActualizarEstadoAsync(1, estado, 1), Times.Once);
     }
 
     [Fact]
     public async Task ActualizarEstadoAsync_CuandoNoExiste_RetornaFalse()
     {
         // Arrange
-        _repoMock.Setup(r => r.ActualizarEstadoAsync(99, It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(false);
+        _repoMock.Setup(r => r.ActualizarEstadoAsync(99, It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(false);
 
         // Act
-        var resultado = await _sut.ActualizarEstadoAsync(99, "ACTIVO", "admin@test.com");
+        var resultado = await _sut.ActualizarEstadoAsync(99, "ACTIVO", 1);
 
         // Assert
         Assert.False(resultado);
